@@ -23,6 +23,9 @@ bot = discord.Bot(intents=intents)
 
 image_types = ["image/png", "image/jpeg", "image/aviv", "image/webp", "image/svg+xml"]
 
+async def on_ready():
+    print(f"We have logged in as {bot.user}")
+
 @bot.event
 async def on_message(message):
     """Gets executed when a message is sent in the server."""
@@ -155,9 +158,9 @@ async def altText(
         Image5.description = AltText5
         fixedFiles.append(Image5)
     if MessageText is not None:
-        await ctx.send(MessageText, files=fixedFiles)
+        await ctx.respond(MessageText, files=fixedFiles)
     else:
-        await ctx.send(files=fixedFiles)
+        await ctx.respond(files=fixedFiles)
 
 # Connect the bot to the discord api
 bot.run(__token__)
