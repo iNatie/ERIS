@@ -2,9 +2,16 @@
 # Written by Nate (@iNatie)
 # A project that allows either plaintext messages or embeds to be sent to a channel, using a webhook to obufuscate the sender.
 
-from dataclasses import field
-from email.mime import image
+from os import environ
+from dotenv import load_dotenv
 import discord
+
+load_dotenv()
+
+if "TOKEN" not in environ:
+    raise RuntimeError("TOKEN environment variable not set, exiting.")
+
+__token__ = environ.get("TOKEN")
 
 intents = discord.Intents.default()
 intents.message_content = True
